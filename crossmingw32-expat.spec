@@ -6,7 +6,7 @@ Summary(ru):	Переносимая библиотека разбора XML (expat)
 Summary(uk):	Переносима б╕бл╕отека розбору XML (expat)
 Name:		crossmingw32-%{realname}
 Version:	1.95.8
-Release:	2
+Release:	3
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz
@@ -30,6 +30,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
+
+%ifarch alpha sparc sparc64 sparcv9
+# alpha's -mieee and sparc's -mtune=* are not valid for target's gcc
+%define		optflags	-O2
+%endif
 
 %description
 Expat is an XML parser written in C. It aims to be fully conforming.

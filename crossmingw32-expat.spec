@@ -45,7 +45,7 @@ This package contains the cross version for Win32.
 %description -l pl
 Expat to napisany w jêzyku C analizator sk³adni XML-a. D±¿y do pe³nej
 zgodno¶ci ze specyfikacj±. Aktualnie nie jest analizatorem, który
-potwiedza³by zgodno¶æ ze specyfikacj±.
+potwiedza³ by zgodno¶æ ze specyfikacj±.
 
 Ten pakiet zawiera wersjê skro¶n± dla Win32.
 

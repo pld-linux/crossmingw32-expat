@@ -86,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/libexpat-0.dll
+%{_bindir}/libexpat-0.dll
 %{_libdir}/libexpat.dll.a
 %{_libdir}/libexpat.la
 %{_includedir}/expat.h

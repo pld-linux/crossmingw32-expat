@@ -19,7 +19,7 @@ BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	libtool
 Requires:	crossmingw32-runtime
-BuildRoot:	%{tmpdir}/%{realname}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
 

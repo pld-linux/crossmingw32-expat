@@ -5,12 +5,12 @@ Summary(pt_BR):	Biblioteca XML expat
 Summary(ru):	Переносимая библиотека разбора XML (expat)
 Summary(uk):	Переносима б╕бл╕отека розбору XML (expat)
 Name:		crossmingw32-%{realname}
-Version:	1.95.7
+Version:	1.95.8
 Release:	1
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz
-# Source0-md5:	2ff59c2a5cbdd21a285c5f343e214fa9
+# Source0-md5:	aff487543845a82fe262e6e2922b4c8e
 Patch0:		%{realname}-DESTDIR.patch
 Patch1:		%{realname}-ac_fixes.patch
 URL:		http://expat.sourceforge.net/
@@ -93,4 +93,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/libexpat-0.dll
 %{_libdir}/libexpat.dll.a
 %{_libdir}/libexpat.la
-%{_includedir}/expat.h
+%{_includedir}/expat*.h

@@ -1,6 +1,6 @@
 %define		realname		expat
-Summary:	XML 1.0 parser
-Summary(pl):	Analizator sk³adni XML 1.0
+Summary:	XML 1.0 parser - Ming32 cross version
+Summary(pl):	Analizator sk³adni XML-a 1.0 - wersja skro¶na dla Ming32
 Summary(pt_BR):	Biblioteca XML expat
 Summary(ru):	ğÅÒÅÎÏÓÉÍÁÑ ÂÉÂÌÉÏÔÅËÁ ÒÁÚÂÏÒÁ XML (expat)
 Summary(uk):	ğÅÒÅÎÏÓÉÍÁ Â¦ÂÌ¦ÏÔÅËÁ ÒÏÚÂÏÒÕ XML (expat)
@@ -35,10 +35,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Expat is an XML parser written in C. It aims to be fully conforming.
 It is currently not a validating XML parser.
 
+This package contains the cross version for Win32.
+
 %description -l pl
-Expat to napisany w jêzyku C analizator sk³adni XML. D±¿y do pe³nej
+Expat to napisany w jêzyku C analizator sk³adni XML-a. D±¿y do pe³nej
 zgodno¶ci ze specyfikacj±. Aktualnie nie jest analizatorem, który
 potwiedza³by zgodno¶æ ze specyfikacj±.
+
+Ten pakiet zawiera wersjê skro¶n± dla Win32.
 
 %description -l pt_BR
 Esta é a biblioteca, em C, XML expat, de James Clark. É um analisador

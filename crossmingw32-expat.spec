@@ -21,7 +21,6 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{realname}-%{version}-root-%(id -u -n)
-Obsoletes:	libexpat1_95
 
 %define		no_install_post_strip	1
 

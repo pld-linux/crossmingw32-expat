@@ -6,8 +6,7 @@ Summary(ru):	Переносимая библиотека разбора XML (expat)
 Summary(uk):	Переносима б╕бл╕отека розбору XML (expat)
 Name:		crossmingw32-%{realname}
 Version:	1.95.6
-Release:	4
-Epoch:		1
+Release:	1
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz

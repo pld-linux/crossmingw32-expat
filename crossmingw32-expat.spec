@@ -5,29 +5,28 @@ Summary(pt_BR):	Biblioteca XML expat
 Summary(ru):	Переносимая библиотека разбора XML (expat)
 Summary(uk):	Переносима б╕бл╕отека розбору XML (expat)
 Name:		crossmingw32-%{realname}
-Version:	1.95.6
+Version:	1.95.7
 Release:	1
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Applications/Publishing/XML
 Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz
-# Source0-md5: ca78d94e83e9f077b5da2bfe28ba986a
-Source1:	%{realname}.m4
+# Source0-md5:	2ff59c2a5cbdd21a285c5f343e214fa9
 Patch0:		%{realname}-DESTDIR.patch
-Patch1:		%{realname}-gcc3-c++.patch
-Patch2:		%{realname}-ac_fixes.patch
+Patch1:		%{realname}-ac_fixes.patch
 URL:		http://expat.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	crossmingw32-gcc
 BuildRequires:	libtool
+Requires:	crossmingw32-runtime
 BuildRoot:	%{tmpdir}/%{realname}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
 
 %define		target			i386-mingw32
 %define		target_platform 	i386-pc-mingw32
-%define		arch			%{_prefix}/%{target}
-%define		gccarch			%{_prefix}/lib/gcc-lib/%{target}
-%define		gcclib			%{_prefix}/lib/gcc-lib/%{target}/%{version}
+%define		_sysprefix		/usr
+%define		_prefix			%{_sysprefix}/%{target}
 
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
@@ -60,29 +59,15 @@ Expat -- парсер XML 1.0, написаний на C. Розрахований на те, щоб бути
 %setup -q -n %{realname}-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
-CC=%{target}-gcc ; export CC
-CXX=%{target}-g++ ; export CXX
-LD=%{target}-ld ; export LD
-AR=%{target}-ar ; export AR
-AS=%{target}-as ; export AS
-CROSS_COMPILE=1 ; export CROSS_COMPILE
-CPPFLAGS="-I%{arch}/include" ; export CPPFLAGS
-RANLIB=%{target}-ranlib ; export RANLIB
-
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
 	--target=%{target} \
 	--host=%{target_platform} \
-	--prefix=%{arch} \
-	--disable-static \
-	--bindir=%{arch}/bin \
-	--libdir=%{arch}/lib \
-	--includedir=%{arch}/include
+	--disable-static
 %{__make}
 
 %install
@@ -91,11 +76,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_aclocaldir}
-cp %{SOURCE1} $RPM_BUILD_ROOT%{_aclocaldir}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%{arch}
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/libexpat-0.dll
+%{_libdir}/libexpat.dll.a
+%{_libdir}/libexpat.la
+%{_includedir}/expat.h

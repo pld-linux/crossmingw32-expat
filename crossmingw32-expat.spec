@@ -1,9 +1,9 @@
 %define		realname		expat
 Summary:	XML 1.0 parser - Ming32 cross version
-Summary(pl):	Analizator skЁadni XML-a 1.0 - wersja skro╤na dla Ming32
-Summary(pt_BR):	Biblioteca XML expat
-Summary(ru):	Переносимая библиотека разбора XML (expat)
-Summary(uk):	Переносима б╕бл╕отека розбору XML (expat)
+Summary(pl.UTF-8):   Analizator skе┌adni XML-a 1.0 - wersja skroе⌡na dla Ming32
+Summary(pt_BR.UTF-8):   Biblioteca XML expat
+Summary(ru.UTF-8):   п÷п╣я─п╣п╫п╬я│п╦п╪п╟я▐ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╟ я─п╟п╥п╠п╬я─п╟ XML (expat)
+Summary(uk.UTF-8):   п÷п╣я─п╣п╫п╬я│п╦п╪п╟ п╠я√п╠п╩я√п╬я┌п╣п╨п╟ я─п╬п╥п╠п╬я─я┐ XML (expat)
 Name:		crossmingw32-%{realname}
 Version:	2.0.0
 Release:	1
@@ -42,27 +42,27 @@ It is currently not a validating XML parser.
 
 This package contains the cross version for Win32.
 
-%description -l pl
-Expat to napisany w jЙzyku C analizator skЁadni XML-a. D╠©y do peЁnej
-zgodno╤ci ze specyfikacj╠. Aktualnie nie jest analizatorem, ktСry
-potwiedzaЁ by zgodno╤Ф ze specyfikacj╠.
+%description -l pl.UTF-8
+Expat to napisany w jд≥zyku C analizator skе┌adni XML-a. Dд┘е╪y do peе┌nej
+zgodnoе⌡ci ze specyfikacjд┘. Aktualnie nie jest analizatorem, ktцЁry
+potwiedzaе┌ by zgodnoе⌡д┤ ze specyfikacjд┘.
 
-Ten pakiet zawiera wersjЙ skro╤n╠ dla Win32.
+Ten pakiet zawiera wersjд≥ skroе⌡nд┘ dla Win32.
 
-%description -l pt_BR
-Esta И a biblioteca, em C, XML expat, de James Clark. и um analisador
-orientado a fluxo de informaГУes que pede o uso de handlers para lidar
+%description -l pt_BR.UTF-8
+Esta ц╘ a biblioteca, em C, XML expat, de James Clark. ц┴ um analisador
+orientado a fluxo de informaц╖ц╣es que pede o uso de handlers para lidar
 com a estrutura que o analisador encontrar no documento.
 
-%description -l ru
-Expat -- парсер XML 1.0, написанный на C. Он предназначен для того,
-чтобы быть полностью совместимым. В настоящее время это не проверяющий
-("not a validating") XML парсер.
+%description -l ru.UTF-8
+Expat -- п©п╟я─я│п╣я─ XML 1.0, п╫п╟п©п╦я│п╟п╫п╫я▀п╧ п╫п╟ C. п·п╫ п©я─п╣п╢п╫п╟п╥п╫п╟я┤п╣п╫ п╢п╩я▐ я┌п╬пЁп╬,
+я┤я┌п╬п╠я▀ п╠я▀я┌я▄ п©п╬п╩п╫п╬я│я┌я▄я▌ я│п╬п╡п╪п╣я│я┌п╦п╪я▀п╪. п▓ п╫п╟я│я┌п╬я▐я┴п╣п╣ п╡я─п╣п╪я▐ я█я┌п╬ п╫п╣ п©я─п╬п╡п╣я─я▐я▌я┴п╦п╧
+("not a validating") XML п©п╟я─я│п╣я─.
 
-%description -l uk
-Expat -- парсер XML 1.0, написаний на C. Розрахований на те, щоб бути
-повн╕стю сум╕сним. Нараз╕ це не перев╕ряючий ("not a validating") XML
-парсер.
+%description -l uk.UTF-8
+Expat -- п©п╟я─я│п╣я─ XML 1.0, п╫п╟п©п╦я│п╟п╫п╦п╧ п╫п╟ C. п═п╬п╥я─п╟я┘п╬п╡п╟п╫п╦п╧ п╫п╟ я┌п╣, я┴п╬п╠ п╠я┐я┌п╦
+п©п╬п╡п╫я√я│я┌я▌ я│я┐п╪я√я│п╫п╦п╪. п²п╟я─п╟п╥я√ я├п╣ п╫п╣ п©п╣я─п╣п╡я√я─я▐я▌я┤п╦п╧ ("not a validating") XML
+п©п╟я─я│п╣я─.
 
 %prep
 %setup -q -n %{realname}-%{version}

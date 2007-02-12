@@ -1,9 +1,9 @@
 %define		realname		expat
 Summary:	XML 1.0 parser - Ming32 cross version
-Summary(pl.UTF-8):   Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
-Summary(pt_BR.UTF-8):   Biblioteca XML expat
-Summary(ru.UTF-8):   Переносимая библиотека разбора XML (expat)
-Summary(uk.UTF-8):   Переносима бібліотека розбору XML (expat)
+Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
+Summary(pt_BR.UTF-8):	Biblioteca XML expat
+Summary(ru.UTF-8):	Переносимая библиотека разбора XML (expat)
+Summary(uk.UTF-8):	Переносима бібліотека розбору XML (expat)
 Name:		crossmingw32-%{realname}
 Version:	2.0.0
 Release:	1

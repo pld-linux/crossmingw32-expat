@@ -1,18 +1,18 @@
-%define		realname		expat
 Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 Summary(pt_BR.UTF-8):	Biblioteca XML expat
 Summary(ru.UTF-8):	Переносимая библиотека разбора XML (expat)
 Summary(uk.UTF-8):	Переносима бібліотека розбору XML (expat)
-Name:		crossmingw32-%{realname}
+%define		_realname		expat
+Name:		crossmingw32-%{_realname}
 Version:	2.0.0
 Release:	1
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Applications/Publishing/XML
-Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/expat/%{_realname}-%{version}.tar.gz
 # Source0-md5:	d945df7f1c0868c5c73cf66ba9596f3f
-Patch0:		%{realname}-ac_fixes.patch
-Patch1:		%{realname}-soname.patch
+Patch0:		%{_realname}-ac_fixes.patch
+Patch1:		%{_realname}-soname.patch
 URL:		http://expat.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -25,9 +25,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		target			i386-mingw32
 %define		target_platform 	i386-pc-mingw32
+%define		arch			%{_prefix}/%{target}
+%define		gccarch			%{_prefix}/lib/gcc-lib/%{target}
+%define		gcclib			%{_prefix}/lib/gcc-lib/%{target}/%{version}
+
 %define		_sysprefix		/usr
 %define		_prefix			%{_sysprefix}/%{target}
-
+%define		_aclocaldir		%{_datadir}/aclocal
+%define		_pkgconfigdir		%{_libdir}/pkgconfig
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
 
@@ -65,15 +70,18 @@ Expat -- парсер XML 1.0, написаний на C. Розраховани
 парсер.
 
 %prep
-%setup -q -n %{realname}-%{version}
+%setup -q -n %{_realname}-%{version}
 %patch0 -p1
 %patch1 -p1
 
 %build
+export PKG_CONFIG_PATH=%{_prefix}/lib/pkgconfig
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %configure \
+	AR="%{target}-ar" \
+	RANLIB="%{target}-ranlib" \
 	--target=%{target} \
 	--host=%{target_platform} \
 	--disable-static

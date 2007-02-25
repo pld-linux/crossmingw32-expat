@@ -80,11 +80,9 @@ export PKG_CONFIG_PATH=%{_prefix}/lib/pkgconfig
 %{__aclocal}
 %{__autoconf}
 %configure \
-	AR="%{target}-ar" \
-	RANLIB="%{target}-ranlib" \
 	--target=%{target} \
-	--host=%{target_platform} \
-	--disable-static
+	--host=%{target}
+
 %{__make}
 
 %install
@@ -106,4 +104,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/libexpat-0.dll
 %{_libdir}/libexpat.dll.a
 %{_libdir}/libexpat.la
+%{_libdir}/libexpat.a
 %{_includedir}/expat*.h

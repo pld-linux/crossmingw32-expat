@@ -1,14 +1,11 @@
 Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
-Summary(pt_BR.UTF-8):	Biblioteca XML expat
-Summary(ru.UTF-8):	Переносимая библиотека разбора XML (expat)
-Summary(uk.UTF-8):	Переносима бібліотека розбору XML (expat)
 %define		_realname		expat
 Name:		crossmingw32-%{_realname}
 Version:	2.0.0
 Release:	1
 License:	Thai Open Source Software Center Ltd (distributable)
-Group:		Applications/Publishing/XML
+Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/expat/%{_realname}-%{version}.tar.gz
 # Source0-md5:	d945df7f1c0868c5c73cf66ba9596f3f
 Patch0:		%{_realname}-ac_fixes.patch
@@ -26,13 +23,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		target			i386-mingw32
 %define		target_platform 	i386-pc-mingw32
 %define		arch			%{_prefix}/%{target}
-%define		gccarch			%{_prefix}/lib/gcc-lib/%{target}
-%define		gcclib			%{_prefix}/lib/gcc-lib/%{target}/%{version}
 
 %define		_sysprefix		/usr
 %define		_prefix			%{_sysprefix}/%{target}
-%define		_aclocaldir		%{_datadir}/aclocal
-%define		_pkgconfigdir		%{_libdir}/pkgconfig
+%define		_dlldir			/usr/share/wine/windows/system
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
 
@@ -54,20 +48,29 @@ potwiedzał by zgodność ze specyfikacją.
 
 Ten pakiet zawiera wersję skrośną dla Win32.
 
-%description -l pt_BR.UTF-8
-Esta é a biblioteca, em C, XML expat, de James Clark. É um analisador
-orientado a fluxo de informações que pede o uso de handlers para lidar
-com a estrutura que o analisador encontrar no documento.
+%package static
+Summary:	Static expat library (cross mingw32 version)
+Summary(pl.UTF-8):	Statyczna biblioteka expat (wersja skrośna mingw32)
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 
-%description -l ru.UTF-8
-Expat -- парсер XML 1.0, написанный на C. Он предназначен для того,
-чтобы быть полностью совместимым. В настоящее время это не проверяющий
-("not a validating") XML парсер.
+%description static
+Static expat library (cross mingw32 version).
 
-%description -l uk.UTF-8
-Expat -- парсер XML 1.0, написаний на C. Розрахований на те, щоб бути
-повністю сумісним. Наразі це не перевіряючий ("not a validating") XML
-парсер.
+%description static -l pl.UTF-8
+Statyczna biblioteka expat (wersja skrośna mingw32).
+
+%package dll
+Summary:	DLL expat library for Windows
+Summary(pl.UTF-8):	Biblioteka DLL expat dla Windows
+Group:		Applications/Emulators
+Requires:	wine
+
+%description dll
+DLL expat library for Windows.
+
+%description dll -l pl.UTF-8
+Biblioteka DLL expat dla Windows.
 
 %prep
 %setup -q -n %{_realname}-%{version}
@@ -75,7 +78,6 @@ Expat -- парсер XML 1.0, написаний на C. Розраховани
 %patch1 -p1
 
 %build
-export PKG_CONFIG_PATH=%{_prefix}/lib/pkgconfig
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -91,18 +93,29 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_dlldir}
+mv -f $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
+
 %if 0%{!?debug:1}
-%{target}-strip --strip-unneeded -R.comment -R.note $RPM_BUILD_ROOT%{_bindir}/*.dll
+%{target}-strip --strip-unneeded -R.comment -R.note $RPM_BUILD_ROOT%{_dlldir}/*.dll
 %{target}-strip -g -R.comment -R.note $RPM_BUILD_ROOT%{_libdir}/*.a
 %endif
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/man
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_bindir}/libexpat-0.dll
 %{_libdir}/libexpat.dll.a
 %{_libdir}/libexpat.la
-%{_libdir}/libexpat.a
 %{_includedir}/expat*.h
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libexpat.a
+
+%files dll
+%defattr(644,root,root,755)
+%{_dlldir}/libexpat-0.dll

@@ -85,12 +85,12 @@ Biblioteka DLL expat dla Windows.
 	--target=%{target} \
 	--host=%{target}
 
-%{__make}
+%{__make} buildlib
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} installlib \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_dlldir}

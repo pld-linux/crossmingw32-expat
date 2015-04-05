@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
 Version:	2.0.1
-Release:	3
+Release:	4
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz
@@ -36,6 +36,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %endif
 # -z options are invalid for mingw linker
 %define		filterout_ld	-Wl,-z,.*
+%define		filterout_c	-f[-a-z0-9=]*
+%define		filterout_cxx	-f[-a-z0-9=]*
 
 %description
 Expat is an XML parser written in C. It aims to be fully conforming.

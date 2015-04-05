@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
 Version:	2.0.1
-Release:	2
+Release:	3
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz

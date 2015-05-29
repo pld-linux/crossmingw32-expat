@@ -1,20 +1,18 @@
-diff -urN expat-2.0.0.org/configure.in expat-2.0.0/configure.in
---- expat-2.0.0.org/configure.in	2006-01-11 02:10:46.000000000 +0100
-+++ expat-2.0.0/configure.in	2006-04-09 18:08:18.483504500 +0200
+--- expat-2.1.0/configure.in~	2012-07-28 10:41:03.000000000 +0300
++++ expat-2.1.0/configure.in	2012-07-28 10:41:41.511402972 +0300
 @@ -26,7 +26,7 @@
  define([expat_version], ifdef([__gnu__],
                                [esyscmd(conftools/get-version.sh lib/expat.h)],
-                               [2.0.x]))
+                               [2.1.x]))
 -AC_INIT(expat, expat_version, expat-bugs@libexpat.org)
-+AC_INIT(expat, 2.0.0, expat-bugs@libexpat.org)
++AC_INIT(expat, 2.1.0, expat-bugs@libexpat.org)
  undefine([expat_version])
  
  AC_CONFIG_SRCDIR(Makefile.in)
-@@ -50,9 +50,6 @@
+@@ -51,8 +51,6 @@
  
  AC_CONFIG_HEADER(expat_config.h)
  
--sinclude(conftools/libtool.m4)
 -sinclude(conftools/ac_c_bigendian_cross.m4)
 -
  AC_LIBTOOL_WIN32_DLL

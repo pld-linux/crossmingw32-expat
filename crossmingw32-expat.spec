@@ -2,16 +2,15 @@ Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
-Version:	2.0.1
-Release:	4
+Version:	2.1.0
+Release:	1
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Development/Libraries
-Source0:	http://dl.sourceforge.net/expat/%{realname}-%{version}.tar.gz
-# Source0-md5:	ee8b492592568805593f81f8cdf2a04c
+Source0:	http://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.gz
+# Source0-md5:	dd7dab7a5fea97d2a6a43f511449b7cd
 Patch0:		%{realname}-ac_fixes.patch
-Patch1:		%{realname}-soname.patch
-URL:		http://expat.sourceforge.net/
-BuildRequires:	autoconf
+URL:		http://www.libexpat.org/
+BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	libtool
@@ -26,9 +25,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysprefix		/usr
 %define		_prefix			%{_sysprefix}/%{target}
 %define		_libdir			%{_prefix}/lib
+%define		_pkgconfigdir		%{_prefix}/lib/pkgconfig
 %define		_dlldir			/usr/share/wine/windows/system
 %define		__cc			%{target}-gcc
 %define		__cxx			%{target}-g++
+%define		__pkgconfig_provides	%{nil}
+%define		__pkgconfig_requires	%{nil}
 
 %ifnarch %{ix86}
 # arch-specific flags (like alpha's -mieee) are not valid for i386 gcc
@@ -79,7 +81,6 @@ Biblioteka DLL expat dla Windows.
 %prep
 %setup -q -n %{realname}-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -115,6 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libexpat.dll.a
 %{_libdir}/libexpat.la
 %{_includedir}/expat*.h
+%{_pkgconfigdir}/expat.pc
 
 %files static
 %defattr(644,root,root,755)
@@ -122,4 +124,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files dll
 %defattr(644,root,root,755)
-%{_dlldir}/libexpat-0.dll
+%{_dlldir}/libexpat-1.dll

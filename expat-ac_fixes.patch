@@ -1,11 +1,11 @@
---- expat-2.1.0/configure.in~	2012-07-28 10:41:03.000000000 +0300
-+++ expat-2.1.0/configure.in	2012-07-28 10:41:41.511402972 +0300
+--- expat-2.1.1/configure.ac~	2012-07-28 10:41:03.000000000 +0300
++++ expat-2.1.1/configure.ac	2012-07-28 10:41:41.511402972 +0300
 @@ -26,7 +26,7 @@
  define([expat_version], ifdef([__gnu__],
                                [esyscmd(conftools/get-version.sh lib/expat.h)],
                                [2.1.x]))
 -AC_INIT(expat, expat_version, expat-bugs@libexpat.org)
-+AC_INIT(expat, 2.1.0, expat-bugs@libexpat.org)
++AC_INIT(expat, 2.1.1, expat-bugs@libexpat.org)
  undefine([expat_version])
  
  AC_CONFIG_SRCDIR(Makefile.in)

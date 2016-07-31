@@ -2,12 +2,12 @@ Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
-Version:	2.1.1
+Version:	2.2.0
 Release:	1
 License:	Thai Open Source Software Center Ltd (distributable)
 Group:		Development/Libraries
 Source0:	http://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.bz2
-# Source0-md5:	7380a64a8e3a9d66a9887b01d0d7ea81
+# Source0-md5:	2f47841c829facb346eb6e3fab5212e2
 Patch0:		%{realname}-ac_fixes.patch
 URL:		http://www.libexpat.org/
 BuildRequires:	autoconf >= 2.58

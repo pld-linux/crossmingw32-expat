@@ -2,12 +2,12 @@ Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
-Version:	2.2.1
+Version:	2.2.5
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 Source0:	http://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.bz2
-# Source0-md5:	d9c3baeab58774cefc2f04faf29f2cf8
+# Source0-md5:	789e297f547980fc9ecc036f9a070d49
 Patch0:		%{realname}-ac_fixes.patch
 URL:		http://www.libexpat.org/
 BuildRequires:	autoconf >= 2.58
@@ -84,22 +84,25 @@ Biblioteka DLL expat dla Windows.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--target=%{target} \
-	--host=%{target}
+	--host=%{target} \
+	--without-xmlwf
 
-%{__make} buildlib
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} installlib \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_dlldir}
-mv -f $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
+%{__mv} $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
 
 %if 0%{!?debug:1}
 %{target}-strip --strip-unneeded -R.comment -R.note $RPM_BUILD_ROOT%{_dlldir}/*.dll

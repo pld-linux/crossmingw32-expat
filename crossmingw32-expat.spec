@@ -2,18 +2,19 @@ Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
-Version:	2.2.6
+Version:	2.2.7
 Release:	1
 License:	MIT
 Group:		Development/Libraries
-Source0:	http://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.bz2
-# Source0-md5:	ca047ae951b40020ac831c28859161b2
-Patch0:		%{realname}-ac_fixes.patch
+Source0:	http://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.xz
+# Source0-md5:	3659bc0938db78815b5f5a9c24d732aa
 URL:		http://www.libexpat.org/
-BuildRequires:	autoconf >= 2.58
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
-BuildRequires:	crossmingw32-gcc
-BuildRequires:	libtool
+BuildRequires:	crossmingw32-gcc >= 1:3.2
+BuildRequires:	libtool >= 1:1.22
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires:	crossmingw32-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,7 +81,6 @@ Biblioteka DLL expat dla Windows.
 
 %prep
 %setup -q -n %{realname}-%{version}
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -115,6 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc AUTHORS COPYING Changes README.md
 %{_libdir}/libexpat.dll.a
 %{_libdir}/libexpat.la
 %{_includedir}/expat*.h

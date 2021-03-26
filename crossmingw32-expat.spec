@@ -2,17 +2,17 @@ Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
-Version:	2.2.10
+Version:	2.3.0
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 Source0:	http://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.xz
-# Source0-md5:	e0fe49a6b3480827c9455e4cfc799133
+# Source0-md5:	1c1b523a8d917e6d9f7af4f8881d8ec5
 URL:		http://www.libexpat.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc >= 1:3.2
-BuildRequires:	libtool >= 1:2.4
+BuildRequires:	libtool >= 2:2.4
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	crossmingw32-runtime
@@ -104,6 +104,8 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_dlldir}
 %{__mv} $RPM_BUILD_ROOT%{_prefix}/bin/*.dll $RPM_BUILD_ROOT%{_dlldir}
+
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/cmake
 
 %if 0%{!?debug:1}
 %{target}-strip --strip-unneeded -R.comment -R.note $RPM_BUILD_ROOT%{_dlldir}/*.dll

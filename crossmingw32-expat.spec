@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
 Version:	2.4.7
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Libraries
 Source0:	https://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.xz
@@ -90,8 +90,9 @@ Biblioteka DLL expat dla Windows.
 %{__autoheader}
 %{__automake}
 %configure \
-	--target=%{target} \
+	--build=i686-pc-linux-gnu \
 	--host=%{target} \
+	--target=%{target} \
 	--without-docbook \
 	--without-xmlwf
 

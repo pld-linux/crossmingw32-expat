@@ -2,17 +2,18 @@ Summary:	XML 1.0 parser - Ming32 cross version
 Summary(pl.UTF-8):	Analizator składni XML-a 1.0 - wersja skrośna dla Ming32
 %define		realname		expat
 Name:		crossmingw32-%{realname}
-Version:	2.5.0
+Version:	2.6.2
 Release:	1
 License:	MIT
 Group:		Development/Libraries
 Source0:	https://downloads.sourceforge.net/expat/%{realname}-%{version}.tar.xz
-# Source0-md5:	ac6677b6d1b95d209ab697ce8b688704
+# Source0-md5:	0cb75c8feb842c0794ba89666b762a2d
 URL:		http://www.libexpat.org/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc >= 1:3.2
 BuildRequires:	libtool >= 2:2.4
+BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	crossmingw32-runtime
@@ -89,6 +90,8 @@ Biblioteka DLL expat dla Windows.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# remove SIZEOF_VOID_P define, see buildconf.sh
+%{__sed} -i -e '/^\/\* The size of `void \*/,/^$/ d' expat_config.h.in
 %configure \
 	--build=i686-pc-linux-gnu \
 	--host=%{target} \
